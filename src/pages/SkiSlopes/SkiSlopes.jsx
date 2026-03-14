@@ -1,10 +1,11 @@
 import styles from "./SkiSlopes.module.css";
+import GameContainer from "../../components/GameContainer/GameContainer";
 import skiSlopesImg from "../../images/wheres-waldo-the-ski-slopes-of-anarchy.jpg";
 
 export default function SkiSlopes() {
 	return (
 		<main className={styles.skiSlopesPage}>
-			<img src={skiSlopesImg} alt="ski slopes" className={styles.cardImg} />
+			<GameContainer src={skiSlopesImg} alt="ski slopes" />
 		</main>
 	);
 }
