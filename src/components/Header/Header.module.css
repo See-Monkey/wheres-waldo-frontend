@@ -1,5 +1,14 @@
 .header {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Pangolin";
+}
+
+.headerContainer {
+	width: 100%;
+	max-width: 1200px;
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -35,6 +44,7 @@
 	color: var(--blue);
 	background-color: var(--aluminum);
 	border-radius: 6px;
+	font-size: 18px;
 }
 
 .header a.active {
@@ -44,7 +54,13 @@
 }
 
 @media screen and (max-width: 850px) {
-	.header {
+	.headerContainer {
 		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.logoContainer {
+		font-size: 20px;
 	}
 }

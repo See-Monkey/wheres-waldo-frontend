@@ -1,0 +1,52 @@
+.homePage {
+	font-family: "Pangolin", sans-serif;
+}
+
+.contentContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 20px;
+	padding: 80px 30px;
+}
+
+.card {
+	border: 2px solid var(--steel);
+	border-radius: 10px;
+	background-color: var(--gunmetal);
+}
+
+.card a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: var(--cerulean);
+}
+
+.cardHeader {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 22px;
+	text-align: center;
+	font-size: 26px;
+	border-radius: 8px 8px 0 0;
+}
+
+.card img {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	background-position: center;
+	border-radius: 8px;
+
+	margin-top: -12px;
+}
+
+.card:hover {
+	border-color: var(--white);
+}
+
+.card a:hover {
+	background-color: var(--cerulean);
+	color: var(--white);
+	text-shadow: 2px 2px 4px var(--carbon);
+}
