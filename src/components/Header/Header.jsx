@@ -13,7 +13,7 @@ export default function Header() {
 					<NavLink
 						to="/"
 						end
-						className={({ isActive }) => (isActive ? styles.active : undefined)}
+						className={({ isActive }) => (isActive ? styles.hidden : undefined)}
 					>
 						Home
 					</NavLink>

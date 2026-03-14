@@ -56,6 +56,10 @@
 	cursor: default;
 }
 
+.header a.hidden {
+	display: none;
+}
+
 .header a:hover:not(.active) {
 	color: var(--white);
 	background-color: var(--cerulean);
