@@ -11,8 +11,8 @@
 
 .card {
 	border: 2px solid var(--steel);
-	border-radius: 10px;
-	background-color: var(--gunmetal);
+	border-radius: 8px;
+	background-color: var(--carbon);
 
 	transform-origin: center;
 	transition: transform 0.25s ease-out;
