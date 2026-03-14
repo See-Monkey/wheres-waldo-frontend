@@ -45,12 +45,24 @@
 	background-color: var(--aluminum);
 	border-radius: 6px;
 	font-size: 18px;
+
+	transform-origin: bottom center;
+	transition: transform 0.25s ease-out;
 }
 
 .header a.active {
 	color: var(--white);
 	background-color: var(--slate);
 	cursor: default;
+}
+
+.header a:hover:not(.active) {
+	color: var(--white);
+	background-color: var(--cerulean);
+	transform: scale(1.05);
+	transition:
+		transform 0.12s ease-out,
+		background-color 0.12s ease-out;
 }
 
 @media screen and (max-width: 850px) {

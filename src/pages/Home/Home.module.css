@@ -13,6 +13,9 @@
 	border: 2px solid var(--steel);
 	border-radius: 10px;
 	background-color: var(--gunmetal);
+
+	transform-origin: center;
+	transition: transform 0.25s ease-out;
 }
 
 .card a {
@@ -43,6 +46,9 @@
 
 .card:hover {
 	border-color: var(--white);
+
+	transform: scale(1.04);
+	transition: transform 0.12s ease-out;
 }
 
 .card a:hover {
