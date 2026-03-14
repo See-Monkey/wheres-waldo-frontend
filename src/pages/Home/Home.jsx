@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import styles from "./Home.module.css";
-import skiSlopesImg from "../../images/wheres-waldo-the-ski-slopes-of-anarchy.jpg";
-import sugarFactoryImg from "../../images/wheres-waldo-the-sugar-fueled-industrial-nightmare.jpg";
-import spaceColonyImg from "../../images/wheres-waldo-space-colony-chaos.jpg";
+import skiSlopesImg from "../../images/wheres-waldo-ski-slopes.jpg";
+import sugarFactoryImg from "../../images/wheres-waldo-sugar-factory.jpg";
+import spaceColonyImg from "../../images/wheres-waldo-space-colony.jpg";
 
 export default function Home() {
 	return (

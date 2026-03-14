@@ -1,6 +1,6 @@
 import styles from "./SpaceColony.module.css";
 import GameContainer from "../../components/GameContainer/GameContainer";
-import spaceColonyImg from "../../images/wheres-waldo-space-colony-chaos.jpg";
+import spaceColonyImg from "../../images/wheres-waldo-space-colony.jpg";
 
 export default function SpaceColony() {
 	return (

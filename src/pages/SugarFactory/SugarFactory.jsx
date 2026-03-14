@@ -1,6 +1,6 @@
 import styles from "./SugarFactory.module.css";
 import GameContainer from "../../components/GameContainer/GameContainer";
-import sugarFactoryImg from "../../images/wheres-waldo-the-sugar-fueled-industrial-nightmare.jpg";
+import sugarFactoryImg from "../../images/wheres-waldo-sugar-factory.jpg";
 
 export default function SugarFactory() {
 	return (
