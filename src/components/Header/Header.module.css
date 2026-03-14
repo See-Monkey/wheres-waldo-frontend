@@ -1,0 +1,50 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logoContainer {
+	font-family: "Hammersmith One";
+	font-size: 30px;
+	display: flex;
+	gap: 12px;
+	padding: 0 20px;
+
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: var(--black);
+}
+
+.logoWheres {
+	color: var(--cerulean);
+}
+
+.logoWaldo {
+	color: var(--red);
+}
+
+.headerNav {
+	padding: 12px;
+	display: flex;
+	gap: 12px;
+}
+
+.header a {
+	padding: 4px 12px;
+	text-decoration: none;
+	color: var(--blue);
+	background-color: var(--aluminum);
+	border-radius: 6px;
+}
+
+.header a.active {
+	color: var(--white);
+	background-color: var(--slate);
+	cursor: default;
+}
+
+@media screen and (max-width: 850px) {
+	.header {
+		flex-direction: column;
+	}
+}
