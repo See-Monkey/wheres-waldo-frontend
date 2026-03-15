@@ -12,6 +12,7 @@ todo.md
 dist
 dist-ssr
 *.local
+coordinates.md
 
 # Editor directories and files
 .vscode/*
