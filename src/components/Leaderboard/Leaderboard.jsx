@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./Leaderboard.module.css";
-import { getLeaderboard } from "../api/leaderboard";
+import { getLeaderboard } from "../../api/leaderboard.js";
 
 export default function Leaderboard({ imageId }) {
 	const [leaderboard, setLeaderboard] = useState([]);

@@ -1,4 +1,4 @@
-import styles from "./Leaderboard.module.css";
+import styles from "./LeaderboardPage.module.css";
 import Leaderboard from "../../components/Leaderboard/Leaderboard";
 
 export default function LeaderboardPage() {

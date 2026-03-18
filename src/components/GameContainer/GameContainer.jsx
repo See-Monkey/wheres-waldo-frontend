@@ -1,21 +1,32 @@
 import { useState, useEffect } from "react";
 import styles from "./GameContainer.module.css";
-import { startSession, guess } from "../api/session";
+import { startSession, guess } from "../../api/session.js";
 
 export default function GameContainer({ src, alt = "game image", imageId }) {
 	const [session, setSession] = useState(null);
 	const [target, setTarget] = useState(null);
+	const [error, setError] = useState(null);
+	console.log(imageId);
 
 	useEffect(() => {
 		async function init() {
-			const res = await startSession(Number(imageId));
-			setSession({
-				id: res.sessionId,
-				characters: res.characters,
-				guessedCharacters: [],
-				completionTime: null,
-			});
+			try {
+				setSession(null); // reset BEFORE fetch
+
+				const res = await startSession(imageId);
+
+				setSession({
+					id: res.sessionId,
+					characters: res.characters,
+					guessedCharacters: [],
+					completionTime: null,
+				});
+			} catch (err) {
+				console.error(err);
+				setError(err.message);
+			}
 		}
+
 		init();
 	}, [imageId]);
 
@@ -45,6 +56,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 		}));
 	}
 
+	if (error) return <div>Error: {error}</div>;
 	if (!session) return <div>Loading...</div>;
 
 	return (

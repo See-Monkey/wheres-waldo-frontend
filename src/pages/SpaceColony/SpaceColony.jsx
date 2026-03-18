@@ -5,7 +5,7 @@ import spaceColonyImg from "../../images/wheres-waldo-space-colony.jpg";
 export default function SpaceColony() {
 	return (
 		<main className={styles.spaceColonyPage}>
-			<GameContainer src={spaceColonyImg} alt="space colony" imageId="3" />
+			<GameContainer src={spaceColonyImg} alt="space colony" imageId={3} />
 		</main>
 	);
 }
