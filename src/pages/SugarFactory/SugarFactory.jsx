@@ -5,7 +5,7 @@ import sugarFactoryImg from "../../images/wheres-waldo-sugar-factory.jpg";
 export default function SugarFactory() {
 	return (
 		<main className={styles.sugarFactoryPage}>
-			<GameContainer src={sugarFactoryImg} alt="sugar factory" />
+			<GameContainer src={sugarFactoryImg} alt="sugar factory" imageId="2" />
 		</main>
 	);
 }
