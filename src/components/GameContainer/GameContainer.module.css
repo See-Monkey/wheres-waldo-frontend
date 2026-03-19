@@ -1,10 +1,10 @@
 .imgContainer {
 	position: relative;
-	display: inline-block;
+	display: block;
 	cursor: crosshair;
 }
 
-.imgContainer img {
+.imgContainer .gameImg {
 	width: 100%;
 	display: block;
 	min-width: 1200px;

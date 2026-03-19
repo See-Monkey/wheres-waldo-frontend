@@ -1,0 +1,36 @@
+.menu {
+	position: absolute;
+	background: var(--gunmetal);
+	border: 1px solid var(--silver);
+	border-radius: 8px;
+	padding: 5px;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	z-index: 10;
+	box-shadow: 0 4px 10px var(--gunmetal);
+}
+
+.characterBtn {
+	display: flex;
+	width: auto;
+	align-items: center;
+	justify-content: center;
+	background: var(--black);
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.characterBtn:hover {
+	background-color: var(--slate);
+}
+
+.sprite {
+	width: 45px;
+	height: 45px;
+	object-fit: contain;
+	display: block;
+}

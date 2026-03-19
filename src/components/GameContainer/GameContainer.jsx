@@ -64,11 +64,25 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 	if (error) return <div>Error: {error}</div>;
 	if (!session) return <div>Loading...</div>;
 
+	const availableCharacters = session.characters.filter(
+		(name) => !session.guessedCharacters.includes(name),
+	);
+
 	return (
 		<div className={styles.imgContainer}>
-			<img src={src} alt={alt} onClick={handleClick} />
+			<img
+				src={src}
+				alt={alt}
+				onClick={handleClick}
+				className={styles.gameImg}
+			/>
 
 			<TargetCircle target={target} />
+			<TargetMenu
+				target={target}
+				availableCharacters={availableCharacters}
+				onGuess={handleGuess}
+			/>
 		</div>
 	);
 }
