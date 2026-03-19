@@ -10,8 +10,10 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 	const [session, setSession] = useState(null);
 	const [target, setTarget] = useState(null);
 	const [markers, setMarkers] = useState([]);
+	const [feedback, setFeedback] = useState(null);
+	const [startTime, setStartTime] = useState(null);
+	const [time, setTime] = useState(0); // seconds
 	const [error, setError] = useState(null);
-	console.log(imageId);
 
 	useEffect(() => {
 		async function init() {
@@ -34,6 +36,29 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 
 		init();
 	}, [imageId]);
+
+	const sessionId = session?.id;
+
+	useEffect(() => {
+		if (!sessionId) return;
+
+		const t = setTimeout(() => {
+			setStartTime(Date.now());
+			setTime(0);
+		}, 0);
+
+		return () => clearTimeout(t);
+	}, [sessionId]);
+
+	useEffect(() => {
+		if (!startTime || session?.completionTime != null) return;
+
+		const interval = setInterval(() => {
+			setTime(Math.floor((Date.now() - startTime) / 1000));
+		}, 1000);
+
+		return () => clearInterval(interval);
+	}, [startTime, session?.completionTime]);
 
 	const handleClick = (e) => {
 		// If target already exists, remove it
@@ -59,6 +84,15 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 			guessedCharacters: res.guessedCharacters,
 			completionTime: res.completionTime,
 		}));
+
+		// Show feedback
+		setFeedback(res.correct ? "Correct!" : "Try again");
+
+		// Remove target/menu
+		setTarget(null);
+
+		// Clear feedback after 2 seconds
+		setTimeout(() => setFeedback(null), 2000);
 	}
 
 	if (error) return <div>Error: {error}</div>;
@@ -69,20 +103,29 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 	);
 
 	return (
-		<div className={styles.imgContainer}>
-			<img
-				src={src}
-				alt={alt}
-				onClick={handleClick}
-				className={styles.gameImg}
+		<>
+			<HUD
+				time={time}
+				characters={session.characters}
+				foundCharacters={session.guessedCharacters}
+				feedback={feedback}
+				completionTime={session.completionTime}
 			/>
+			<div className={styles.imgContainer}>
+				<img
+					src={src}
+					alt={alt}
+					onClick={handleClick}
+					className={styles.gameImg}
+				/>
 
-			<TargetCircle target={target} />
-			<TargetMenu
-				target={target}
-				availableCharacters={availableCharacters}
-				onGuess={handleGuess}
-			/>
-		</div>
+				<TargetCircle target={target} />
+				<TargetMenu
+					target={target}
+					availableCharacters={availableCharacters}
+					onGuess={handleGuess}
+				/>
+			</div>
+		</>
 	);
 }

@@ -1,0 +1,14 @@
+.hud {
+	width: 100%;
+	background-image: linear-gradient(var(--white), var(--silver));
+}
+
+.feedback {
+	min-height: 1.5rem; /* enough for one line of text */
+	transition: opacity 0.3s;
+	opacity: 1;
+}
+
+.feedback.hidden {
+	opacity: 0;
+}
