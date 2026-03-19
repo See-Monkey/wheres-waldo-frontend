@@ -30,7 +30,7 @@ export default function TargetMenu({ target, availableCharacters, onGuess }) {
 			{availableCharacters.map((name) => (
 				<button
 					key={name}
-					onClick={() => onGuess(name)}
+					onClick={() => onGuess(name, target.x, target.y)}
 					className={styles.characterBtn}
 				>
 					<img src={spriteMap[name]} alt={name} className={styles.sprite} />
