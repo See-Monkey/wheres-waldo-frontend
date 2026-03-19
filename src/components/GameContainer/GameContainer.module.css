@@ -9,15 +9,3 @@
 	display: block;
 	min-width: 1200px;
 }
-
-.targetingBox {
-	position: absolute;
-	left: var(--x);
-	top: var(--y);
-	transform: translate(-50%, -50%);
-	width: 4%;
-	aspect-ratio: 1;
-	border: 3px solid var(--red);
-	border-radius: 50%;
-	pointer-events: none;
-}

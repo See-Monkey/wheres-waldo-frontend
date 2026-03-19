@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import styles from "./GameContainer.module.css";
+import HUD from "../HUD/HUD.jsx";
+import TargetCircle from "../TargetCircle/TargetCircle.jsx";
+import TargetMenu from "../TargetMenu/TargetMenu.jsx";
+import Markers from "../Markers/Markers.jsx";
 import { startSession, guess } from "../../api/session.js";
 
 export default function GameContainer({ src, alt = "game image", imageId }) {
 	const [session, setSession] = useState(null);
 	const [target, setTarget] = useState(null);
+	const [markers, setMarkers] = useState([]);
 	const [error, setError] = useState(null);
 	console.log(imageId);
 
@@ -60,18 +65,10 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 	if (!session) return <div>Loading...</div>;
 
 	return (
-		<div className={styles.imgContainer} onClick={handleClick}>
-			<img src={src} alt={alt} />
+		<div className={styles.imgContainer}>
+			<img src={src} alt={alt} onClick={handleClick} />
 
-			{target && (
-				<div
-					className={styles.targetingBox}
-					style={{
-						"--x": `${target.x * 100}%`,
-						"--y": `${target.y * 100}%`,
-					}}
-				/>
-			)}
+			<TargetCircle target={target} />
 		</div>
 	);
 }
