@@ -28,7 +28,7 @@ export default function HUD({
 						: `Time: ${time}s`}
 				</div>
 				<div className={`${styles.feedback} ${!feedback ? styles.hidden : ""}`}>
-					{feedback || "\u00A0"}
+					{feedback || " "}
 				</div>
 				<div className={styles.characterContainer}>
 					{characters.map((char) => {
