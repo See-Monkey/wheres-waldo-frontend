@@ -124,12 +124,16 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 					className={styles.gameImg}
 				/>
 
-				<TargetCircle target={target} />
-				<TargetMenu
-					target={target}
-					availableCharacters={availableCharacters}
-					onGuess={handleGuess}
-				/>
+				{!session.completionTime && (
+					<>
+						<TargetCircle target={target} />
+						<TargetMenu
+							target={target}
+							availableCharacters={availableCharacters}
+							onGuess={handleGuess}
+						/>
+					</>
+				)}
 				<Markers markers={markers} />
 			</div>
 		</>
