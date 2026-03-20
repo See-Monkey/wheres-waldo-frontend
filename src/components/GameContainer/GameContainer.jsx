@@ -93,6 +93,11 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 
 		// Clear feedback after 2 seconds
 		setTimeout(() => setFeedback(null), 2000);
+
+		// Add good guess to Markers
+		if (res.correct) {
+			setMarkers((prev) => [...prev, { x, y }]);
+		}
 	}
 
 	if (error) return <div>Error: {error}</div>;
@@ -125,6 +130,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 					availableCharacters={availableCharacters}
 					onGuess={handleGuess}
 				/>
+				<Markers markers={markers} />
 			</div>
 		</>
 	);
