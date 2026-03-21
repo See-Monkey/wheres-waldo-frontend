@@ -4,7 +4,10 @@ import HUD from "../HUD/HUD.jsx";
 import TargetCircle from "../TargetCircle/TargetCircle.jsx";
 import TargetMenu from "../TargetMenu/TargetMenu.jsx";
 import Markers from "../Markers/Markers.jsx";
+import GameOver from "../GameOver/GameOver.jsx";
+import qualifiesForTopTen from "../../functions/qualifiesForTopTen.js";
 import { startSession, guess } from "../../api/session.js";
+import { getLeaderboard } from "../../api/leaderboard.js";
 
 export default function GameContainer({ src, alt = "game image", imageId }) {
 	const [session, setSession] = useState(null);
@@ -13,12 +16,19 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 	const [feedback, setFeedback] = useState(null);
 	const [startTime, setStartTime] = useState(null);
 	const [time, setTime] = useState(0); // seconds
+	const [gameOver, setGameOver] = useState(false);
+	const [qualifies, setQualifies] = useState(false);
 	const [error, setError] = useState(null);
 
+	// Create session and return the image's characters
 	useEffect(() => {
 		async function init() {
 			try {
-				setSession(null); // reset BEFORE fetch
+				// Reset before fetch
+				setSession(null);
+				setQualifies(false);
+				setGameOver(false);
+				setMarkers([]);
 
 				const res = await startSession(imageId);
 
@@ -39,6 +49,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 
 	const sessionId = session?.id;
 
+	// Restart HUD timer if session changes
 	useEffect(() => {
 		if (!sessionId) return;
 
@@ -50,6 +61,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 		return () => clearTimeout(t);
 	}, [sessionId]);
 
+	// HUD timer
 	useEffect(() => {
 		if (!startTime || session?.completionTime != null) return;
 
@@ -60,6 +72,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 		return () => clearInterval(interval);
 	}, [startTime, session?.completionTime]);
 
+	// Handle targeting click for guessing
 	const handleClick = (e) => {
 		// If target already exists, remove it
 		if (target) {
@@ -76,6 +89,7 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 		setTarget({ x, y });
 	};
 
+	// Handle guessing a character and location
 	async function handleGuess(characterName, x, y) {
 		const res = await guess(session.id, characterName, x, y);
 
@@ -97,6 +111,24 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 		// Add good guess to Markers
 		if (res.correct) {
 			setMarkers((prev) => [...prev, { x, y }]);
+		}
+
+		// Check for game win
+		if (res.completionTime) {
+			try {
+				// Get leaderboard
+				const leaderboard = await getLeaderboard(imageId);
+
+				// Check if time qualifies
+				const doesQualify = qualifiesForTopTen(leaderboard, res.completionTime);
+				if (doesQualify) {
+					setQualifies(true);
+				}
+
+				setGameOver(true);
+			} catch (err) {
+				console.error("Leaderboard fetch failed:", err);
+			}
 		}
 	}
 
@@ -135,6 +167,10 @@ export default function GameContainer({ src, alt = "game image", imageId }) {
 					</>
 				)}
 				<Markers markers={markers} />
+
+				{gameOver && session?.completionTime != null && (
+					<GameOver imageId={imageId} session={session} qualifies={qualifies} />
+				)}
 			</div>
 		</>
 	);
