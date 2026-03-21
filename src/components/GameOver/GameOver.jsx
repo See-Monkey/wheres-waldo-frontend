@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
 import styles from "./GameOver.module.css";
+import Leaderboard from "../Leaderboard/Leaderboard.jsx";
 import { getLeaderboard, submitScore } from "../../api/leaderboard.js";
 
 export default function GameOver({ imageId, session, qualifies }) {
-	const [leaderboard, setLeaderboard] = useState([]);
 	const [player, setPlayer] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+	const [leaderboard, setLeaderboard] = useState([]);
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
@@ -20,10 +22,8 @@ export default function GameOver({ imageId, session, qualifies }) {
 		try {
 			await submitScore(imageId, session.id, playerName);
 
-			// refresh leaderboard after submit
 			const updated = await getLeaderboard(imageId);
 			setLeaderboard(updated);
-
 			setSubmitted(true);
 		} catch (err) {
 			setError(err.message);
@@ -47,7 +47,11 @@ export default function GameOver({ imageId, session, qualifies }) {
 									onChange={(e) => setPlayer(e.target.value)}
 								/>
 
-								<button onClick={() => handleSubmit(player)} disabled={!player}>
+								<button
+									onClick={() => handleSubmit(player)}
+									disabled={!player}
+									className={styles.submitBtn}
+								>
 									Submit
 								</button>
 							</div>
@@ -57,29 +61,17 @@ export default function GameOver({ imageId, session, qualifies }) {
 					</>
 				)}
 
-				{!qualifies && (
-					<div className={styles.gameOver}>
-						<h2>Game Over</h2>
-					</div>
-				)}
+				{!qualifies && <h2>Game Over</h2>}
 
 				{error && <p>{error}</p>}
 
-				<div className={styles.leaderboardContainer}>
-					<h3>Leaderboard</h3>
+				<Leaderboard leaderboard={leaderboard} />
 
-					{leaderboard.map((entry, i) => (
-						<div
-							key={`${entry.player}-${entry.completionTime}`}
-							className={styles.entryContainer}
-						>
-							<p>
-								{i + 1}. {entry.player}
-							</p>
-							<p>{entry.completionTime.toFixed(2)}s</p>
-						</div>
-					))}
-				</div>
+				<Link to="/">
+					<button type="button" className={styles.homeBtn}>
+						Home
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

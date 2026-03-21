@@ -1,0 +1,31 @@
+.leaderboardContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-width: 90%;
+	min-width: 300px;
+	background-color: var(--carbon);
+	border-radius: 6px;
+	border: 1px solid var(--slate);
+	color: var(--white);
+	padding: 16px 12px;
+	font-family: "Roboto";
+}
+
+.leaderboardContainer h3 {
+	border-bottom: 1px solid var(--silver);
+	font-family: "Pangolin";
+	font-size: 20px;
+	padding: 6px;
+}
+
+.entryContainer {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 2px 4px;
+}
+
+.homeBtn:hover {
+	cursor: pointer;
+}
