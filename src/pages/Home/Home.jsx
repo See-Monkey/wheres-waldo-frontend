@@ -7,6 +7,13 @@ import spaceColonyImg from "../../images/wheres-waldo-space-colony.jpg";
 export default function Home() {
 	return (
 		<main className={styles.homePage}>
+			<h2>Choose an image below and the clock will start.</h2>
+			<h3>
+				Your HUD will display the timer and reamaining characters to find.
+			</h3>
+			<h3>
+				Find them as quickly as possible to earn a spot on the leaderboard!
+			</h3>
 			<div className={styles.contentContainer}>
 				<div className={styles.card}>
 					<Link to="/ski-slopes">

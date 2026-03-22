@@ -1,0 +1,61 @@
+.aboutPage {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 70px 12px;
+	color: var(--platinum);
+}
+
+.aboutPage h1 {
+	font-family: "Hammersmith One";
+	font-weight: 500;
+}
+
+.aboutPage h2,
+.aboutPage h3,
+.aboutPage li {
+	font-family: "Pangolin";
+	font-weight: 500;
+}
+
+.aboutPage h2 {
+	padding: 20px 20px 0;
+	border-bottom: 2px solid var(--platinum);
+}
+
+.aboutPage h3 {
+	padding: 0 10px;
+	border-bottom: 1px solid var(--platinum);
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding-top: 20px;
+}
+
+.content a {
+	height: 55px;
+	width: 55px;
+
+	transition:
+		padding 0.25s ease-in,
+		border 0.25s ease-in;
+}
+
+.content img {
+	filter: invert(100%);
+}
+
+.content a:hover {
+	background-color: var(--cerulean);
+	border-radius: 50%;
+	padding: 4px;
+	border: 2px solid var(--platinum);
+
+	transition:
+		padding 0.12s ease-out,
+		border 0.12s ease-out;
+}

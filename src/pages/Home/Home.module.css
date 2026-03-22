@@ -1,5 +1,15 @@
 .homePage {
 	font-family: "Pangolin", sans-serif;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 60px;
+}
+
+.homePage h2,
+.homePage h3 {
+	color: var(--white);
+	font-weight: 550;
 }
 
 .contentContainer {
