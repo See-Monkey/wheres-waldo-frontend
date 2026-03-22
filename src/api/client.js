@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://wheres-waldo-backend-t6vh.onrender.com";
 
 export async function apiFetch(endpoint, options = {}) {
 	const res = await fetch(`${API_BASE}${endpoint}`, {
